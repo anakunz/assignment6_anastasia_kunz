@@ -5,12 +5,12 @@ date: "12/1/2020"
 output: html_document
 ---
 
-```{r setup, include=FALSE, message = FALSE, warning = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(here)
 library(tidyverse)
 library(janitor)
-
+library(broom)
 ```
 
 ## SUBTITLE
@@ -51,10 +51,23 @@ response_party <- party_subset %>%
 response_count <- response_party %>% 
   tabyl(pol_party, response)
 ```
-
+ 
+**Table 1.** Self identification survey of political party and environmentalist. Data: Forest & Batavia 2017
 ```{r}
 #create contingency table 
 response_table <- response_count %>% 
   column_to_rownames(var = "pol_party")
+
 ```
+
+```{r}
+
+response_x2 <- chisq.test(response_table)
+
+response_tidy <- tidy(response_x2)
+response_tidy
+```
+
+
+
 
