@@ -1,0 +1,42 @@
+---
+title: "Assignment 6 Task 3"
+author: "Anastasia Kunz"
+date: "12/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(here)
+library(tidyverse)
+library(janitor)
+
+```
+
+```{r}
+#read in data
+lizards <- read_csv(here("data", "lizards (1).csv"))
+```
+
+```{r}
+#create a subset with desired variables, filtered for females of the two species
+lizard_subset_na <- lizards %>% 
+  select(total_length, sex, spp) %>% 
+  filter(sex == "F") %>% 
+  filter(spp %in% c("CNUN", "CNTE"))
+lizard_subset <- na.omit(lizard_subset_na)
+```
+
+```{r}
+# Create visualization comparing tail length between species
+ggplot(lizard_subset, aes( x = spp, y = total_length))+
+  geom_boxplot()
+```
+
+**Figure 1.** Caption here. Data: 
+
+```{r}
+
+```
+
+

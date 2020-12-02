@@ -11,9 +11,12 @@ library(here)
 library(tidyverse)
 library(janitor)
 library(broom)
+library(kableExtra)
 ```
 
-## SUBTITLE
+## Introduction 
+
+ a 2 - 3 sentence mini-introduction describing the survey data, the question you’re answering, and the method you’ll use
 
 ```{r}
 # read in data
@@ -53,10 +56,11 @@ response_count <- response_party %>%
 ```
  
 **Table 1.** Self identification survey of political party and environmentalist. Data: Forest & Batavia 2017
-```{r}
+```{r = include}
 #create contingency table 
 response_table <- response_count %>% 
   column_to_rownames(var = "pol_party")
+response_table
 
 ```
 
@@ -68,6 +72,6 @@ response_tidy <- tidy(response_x2)
 response_tidy
 ```
 
-
+2-3 sentences, using in-line referencing to the chi-square test results, describe the results of the statistical test and briefly highlight major takeaways that your reader should learn from your analysis (i.e., you should refer to the actual proportions here).
 
 
