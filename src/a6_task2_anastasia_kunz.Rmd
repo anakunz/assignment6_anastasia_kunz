@@ -1,5 +1,5 @@
 ---
-title: "Assignment 6 Task 2"
+title: "Assignment 6 Task 2 CHANGE TITLE"
 author: "Anastasia Kunz"
 date: "12/1/2020"
 output: html_document
@@ -74,4 +74,7 @@ response_tidy
 
 2-3 sentences, using in-line referencing to the chi-square test results, describe the results of the statistical test and briefly highlight major takeaways that your reader should learn from your analysis (i.e., you should refer to the actual proportions here).
 
+## References 
+
+Andrews Forest LTER Site and C. Batavia. 2019. Influences on charitable giving for conservation: Online survey data of 1,331 respondents across the US, August 2017 ver 3. Environmental Data Initiative. https://doi.org/10.6073/pasta/926e6270e324a1322a900da14d38b96c
 

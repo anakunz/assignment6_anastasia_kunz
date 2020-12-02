@@ -1,5 +1,5 @@
 ---
-title: "Assignment 6 Task 3"
+title: "Assignment 6 Task 3 CHANGE TITLE"
 author: "Anastasia Kunz"
 date: "12/1/2020"
 output: html_document
@@ -10,13 +10,17 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(here)
 library(tidyverse)
 library(janitor)
-
+library(kableExtra)
 ```
 
 ```{r}
 #read in data
 lizards <- read_csv(here("data", "lizards (1).csv"))
 ```
+
+## Introduction
+
+2 - 3 sentence mini-introduction describing the data, the question you’re answering, and the method you’ll use
 
 ```{r}
 #create a subset with desired variables, filtered for females of the two species
@@ -35,8 +39,39 @@ ggplot(lizard_subset, aes( x = spp, y = total_length))+
 
 **Figure 1.** Caption here. Data: 
 
+**Table 1.** Caption here. Data:
 ```{r}
+# Create Summary Table
+lizard_summary <- lizard_subset %>% 
+  group_by(spp) %>% 
+  summarize(mean_tail = mean(total_length),
+            sdev_tail = sd(total_length),
+            n = n())
 
 ```
+
+```{r include = FALSE}
+# exploratory plots
+
+
+```
+
+```{r}
+#ttest here? come back to this
+```
+
+
+```{r}
+# Determine cohen's d effect size
+```
+
+
+1 - 2 sentence summary statement describing your findings, that at least includes: the results of your hypothesis test, the effect size, and the actual means difference between the two group
+
+
+## References
+
+Lightfoot, D. 2017. Lizard pitfall trap data (LTER-II, LTER-III) ver 36. Environmental Data Initiative. https://doi.org/10.6073/pasta/ff37b4cace16a9943575f3fd7067064e 
+
 
 
