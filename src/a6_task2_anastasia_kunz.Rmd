@@ -1,0 +1,60 @@
+---
+title: "Assignment 6 Task 2"
+author: "Anastasia Kunz"
+date: "12/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(tidyverse)
+library(janitor)
+
+```
+
+## SUBTITLE
+
+```{r}
+# read in data
+survey_data <- read_csv(here("data", "conservation_survey.csv"))
+```
+
+```{r}
+# Make subset of data for only what is needed in the task
+survey_subset <- survey_data %>% 
+  select(ENV_ID, POL_OR)
+```
+
+```{r}
+# Add column to bin political party
+party_subset_na <- survey_subset %>% 
+  mutate(pol_party = case_when(
+    POL_OR %in% c(1,2,3) ~ "conservative", 
+    POL_OR %in% c(5,6,7) ~ "liberal"
+  ))
+party_subset <-na.omit(party_subset_na)
+```
+
+```{r}
+#Add column to bin response
+response_party <- party_subset %>% 
+  mutate(response = case_when(
+    ENV_ID == 1 ~ "Yes",
+    ENV_ID == 2 ~ "No",
+    ENV_ID == 3 ~ "Unsure"
+  ))
+```
+
+```{r}
+# Create table 
+response_count <- response_party %>% 
+  tabyl(pol_party, response)
+```
+
+```{r}
+#create contingency table 
+response_table <- response_count %>% 
+  column_to_rownames(var = "pol_party")
+```
+
