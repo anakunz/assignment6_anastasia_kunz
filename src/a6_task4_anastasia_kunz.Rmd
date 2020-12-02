@@ -1,0 +1,30 @@
+---
+title: "Mono Lake Data Vis CHANGE TITLE"
+author: "Anastasia Kunz"
+date: "12/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(here)
+library(janitor)
+library(tidyverse)
+```
+
+```{r}
+#read in data
+mono_lake <- read_csv(here("data", "mono_lake_annual_levels.csv"))
+```
+
+```{r}
+# simplify dataset
+
+```
+
+```{r}
+# Data Vis here
+
+
+```
+**Figure 1.** Caption here. Data: 
