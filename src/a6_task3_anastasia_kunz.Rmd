@@ -12,6 +12,7 @@ library(tidyverse)
 library(janitor)
 library(kableExtra)
 library(effsize)
+library(broom)
 ```
 
 ```{r}
@@ -47,7 +48,7 @@ ggplot(lizard_subset, aes( x = spp, y = total_length))+
   theme(legend.position = "none")
 ```
 
-**Figure 1.** Caption here. Data: Lightfoot 2017
+**Figure 1.** Box plot depicting total tail length comparison of female lizards between the Colorado Checkered Lizard and the Desert Grassland Lizard. Data: Lightfoot 2017
 
 **Table 1.** Summary table of comparing tail length of female Colorado Checkered Liard and female Desert Grassland Lizard. Data: Lightfoot 2017
 ```{r}
@@ -86,21 +87,20 @@ qqnorm(CNTE_tail) # a little less normal, generally linear but doesnt look great
 ```
 
 ```{r}
-#ttestor mann whitney u here? come back to this
-
-
+#Run a two sample t test to compare means of two lizard species
+tail_test<- t.test(CNUN_tail, CNTE_tail)
+tail_test_tidy <- tidy(tail_test)
 
 ```
 
 
 ```{r}
 # Determine cohen's d effect size
-lizard_effsize <- cohen.d(CNUN_tail, CNTE_tail)
+lizard_effsize <- cohen.d(CNTE_tail,CNUN_tail)
 
 ```
 
-
-1 - 2 sentence summary statement describing your findings, that at least includes: the results of your hypothesis test, the effect size, and the actual means difference between the two group
+In this analysis I compared mean total tail length (mm) of female Colorado Checkered Lizards with female Desert Grassland Lizards, finding that the Colorado Checkered Lizard had a longer mean tail length (`r round(lizard_summary[1,2], 2)`mm, n = `r lizard_summary[1,4]`) than the Desert Grassland Lizard (`r round(lizard_summary[2,2], 2)`mm, n = `r lizard_summary[2,4]`) with an actual difference in means of `r round(lizard_summary[1,2]- lizard_summary[2,2], 2)`mm. This shows a a `r round((lizard_summary[1,2] - lizard_summary[2,2])/((lizard_summary[2,2] + lizard_summary[1,2])/2)*100, 2)`% difference (Table 1). Statistical anlaysis using a two-sample t-test showed this difference to be significant (Welch's Two Sample T Test: `r round(tail_test_tidy[1,4], 2)`, p< `r round(tail_test_tidy[1,5], 2)`), but with a small effect size (Cohen's d = `r round(lizard_effsize$estimate, 2)`))
 
 
 ## References
