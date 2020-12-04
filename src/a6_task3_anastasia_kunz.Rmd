@@ -22,7 +22,7 @@ lizards <- read_csv(here("data", "lizards (1).csv"))
 
 ## Introduction
 
-2 - 3 sentence mini-introduction describing the data, the question you’re answering, and the method you’ll use
+In this report, I will be using the Jornada Basin LTER lizards data to visualize and assess if there is a difference between tail lengths of female Colorado Checkered Lizards and female Desert Grassland Lizards. To do this I will perform statistical analysis using a two sample t-test comparing the mean total tail length for both groups, and calculate effect size. 
 
 ```{r}
 #create a subset with desired variables, filtered for females of the two species
