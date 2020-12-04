@@ -33,8 +33,8 @@ survey_subset <- survey_data %>%
 # Add column to bin political party
 party_subset_na <- survey_subset %>% 
   mutate(pol_party = case_when(
-    POL_OR %in% c(1,2,3) ~ "conservative", 
-    POL_OR %in% c(5,6,7) ~ "liberal"
+    POL_OR %in% c(1,2,3) ~ "Conservative", 
+    POL_OR %in% c(5,6,7) ~ "Liberal"
   ))
 party_subset <-na.omit(party_subset_na)
 ```
@@ -60,16 +60,29 @@ response_count <- response_party %>%
 #create contingency table 
 response_table <- response_count %>% 
   column_to_rownames(var = "pol_party")
-response_table
+
+response_table %>% 
+  kable(col.names = c("No",
+                      "Unsure",
+                      "Yes")) %>% 
+  kable_styling(full_width = FALSE)
 
 ```
-
+**Table 2.** Chi-Squared test results measuring impact FIX ME. Data: Forest & Batavia 2017.
 ```{r}
 
 response_x2 <- chisq.test(response_table)
 
 response_tidy <- tidy(response_x2)
-response_tidy
+
+response_tidy %>% 
+  kable(col.names = c("Statistic",
+                      "P-Value",
+                      "Parameter",
+                      "Method")) %>% 
+  kable_styling(full_width = FALSE)
+
+# ASK IN OFFICE HOURS WHY IT ROUNDS PVAL TO 0 AND IF THERE IS A WAY TO CHANGE IT? Necessary?
 ```
 
 2-3 sentences, using in-line referencing to the chi-square test results, describe the results of the statistical test and briefly highlight major takeaways that your reader should learn from your analysis (i.e., you should refer to the actual proportions here).
