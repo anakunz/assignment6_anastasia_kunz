@@ -11,6 +11,7 @@ library(here)
 library(tidyverse)
 library(janitor)
 library(kableExtra)
+library(effsize)
 ```
 
 ```{r}
@@ -34,7 +35,16 @@ lizard_subset <- na.omit(lizard_subset_na)
 ```{r}
 # Create visualization comparing tail length between species
 ggplot(lizard_subset, aes( x = spp, y = total_length))+
-  geom_boxplot()
+  geom_boxplot(aes(fill= spp))+
+  theme_bw()+
+  labs(
+    x = "Species",
+    y = "Tail Length (mm)",
+    title = "Tail Length Comparison Between Two Species of Female Lizards",
+    subtitle = "Lightfoot 2017"
+  )+
+   scale_x_discrete(labels=c("CNTE" = "Colorado Checkered Lizard", "CNUN" = "Desert Grassland Lizard"))+
+  theme(legend.position = "none")
 ```
 
 **Figure 1.** Caption here. Data: 
@@ -47,22 +57,44 @@ lizard_summary <- lizard_subset %>%
   summarize(mean_tail = mean(total_length),
             sdev_tail = sd(total_length),
             n = n())
-
+lizard_summary %>% 
+  kable(col.names = c("Species",
+                      "Mean Tail Length (mm)",     # CHECK THE UNITS
+                      "Standard Deviation (mm)",
+                      "Sample Size (n)")) %>% 
+  kable_styling(full_width = FALSE)
 ```
 
 ```{r include = FALSE}
-# exploratory plots
+# Create subsets
 
+CNUN_tail <- lizard_subset %>% 
+  filter(spp == "CNUN") %>% 
+  pull(total_length)
+
+CNTE_tail <- lizard_subset %>% 
+  filter(spp == "CNTE") %>% 
+  pull(total_length)
+
+# exploratory plots
+hist(CNUN_tail) # looks decently normal, slight skew to the right
+hist(CNTE_tail) # looks pretty normal too, again slightly shifted right
+qqnorm(CNUN_tail) # a little curved but mostly linear
+qqnorm(CNTE_tail) # a little less normal, generally linear but doesnt look great
 
 ```
 
 ```{r}
 #ttest here? come back to this
+
+
+
 ```
 
 
 ```{r}
 # Determine cohen's d effect size
+lizard_effsize <- cohen.d(CNUN_tail, CNTE_tail)
 ```
 
 
