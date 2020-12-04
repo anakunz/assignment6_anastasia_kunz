@@ -1,5 +1,5 @@
 ---
-title: "Assignment 6 Task 3 CHANGE TITLE"
+title: "Lizard Tail Length Comparison"
 author: "Anastasia Kunz"
 date: "12/1/2020"
 output: html_document
@@ -47,9 +47,9 @@ ggplot(lizard_subset, aes( x = spp, y = total_length))+
   theme(legend.position = "none")
 ```
 
-**Figure 1.** Caption here. Data: 
+**Figure 1.** Caption here. Data: Lightfoot 2017
 
-**Table 1.** Caption here. Data:
+**Table 1.** Summary table of comparing tail length of female Colorado Checkered Liard and female Desert Grassland Lizard. Data: Lightfoot 2017
 ```{r}
 # Create Summary Table
 lizard_summary <- lizard_subset %>% 
@@ -64,6 +64,7 @@ lizard_summary %>%
                       "Sample Size (n)")) %>% 
   kable_styling(full_width = FALSE)
 ```
+
 
 ```{r include = FALSE}
 # Create subsets
@@ -85,7 +86,7 @@ qqnorm(CNTE_tail) # a little less normal, generally linear but doesnt look great
 ```
 
 ```{r}
-#ttest here? come back to this
+#ttestor mann whitney u here? come back to this
 
 
 
@@ -95,6 +96,7 @@ qqnorm(CNTE_tail) # a little less normal, generally linear but doesnt look great
 ```{r}
 # Determine cohen's d effect size
 lizard_effsize <- cohen.d(CNUN_tail, CNTE_tail)
+
 ```
 
 
