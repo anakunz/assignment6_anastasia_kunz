@@ -1,5 +1,5 @@
 ---
-title: "Mono Lake Data Vis CHANGE TITLE"
+title: "Mono Lake Levels Data Viusalization"
 author: "Anastasia Kunz"
 date: "12/1/2020"
 output: html_document
@@ -10,21 +10,61 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(here)
 library(janitor)
 library(tidyverse)
+library(lubridate)
+library(gganimate)
 ```
 
 ```{r}
 #read in data
-mono_lake <- read_csv(here("data", "mono_lake_annual_levels.csv"))
+mono_lake <- read_csv(here("data", "mono_lake_annual_levels.csv"), skip = 5)
 ```
 
 ```{r}
-# simplify dataset
+# simplify dataset, rename some varibales 
+mono_levels <- mono_lake %>% 
+  clean_names() %>% 
+  rename(level = lake_level_feet_above_sea_level)
+ 
+  
 
 ```
 
 ```{r}
 # Data Vis here
-
+ggplot(mono_levels, aes(x = year, y = level))+
+  geom_line(size = .7)+
+  theme_bw()+
+  labs(
+    x = "Year",
+    y = "Lake Level (ft Above Sealevel)",
+    title = "Level of Mono Lake",
+    subtitle = "1850 - 2017"
+  )+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_blank())+
+  geom_hline(yintercept = 6350, size = 1, alpha = 0.5, color = "firebrick")+
+  geom_hline(yintercept = 6360, size = 1, alpha = 0.5,color = "tomato")+
+  geom_hline(yintercept = 6377, size = 1, alpha = 0.5,color = "orange")+
+  geom_hline(yintercept = 6392, size = 1, alpha = 0.5,color = "deepskyblue4")+
+  annotate(geom="text", x= 1862, y= 6394, size = 3.5, 
+           label="Target level (6392 ft)")+
+  annotate(geom = "text", x = 1868, y = 6379, size = 3.5,
+          label = "Land bridge forms (6377 ft)")+
+  annotate(geom = "text", x = 1872, y = 6362, size = 3.5,
+           label = "Adverse salinity effects (6360 ft)")+
+  annotate(geom = "text", x = 1877, y = 6352, size = 3.5,
+           label = "Acute adverse salinity effects (6350 ft)")+
+  transition_reveal(year)
+  
+  
+  
 
 ```
 **Figure 1.** Caption here. Data: 
+
+
+
