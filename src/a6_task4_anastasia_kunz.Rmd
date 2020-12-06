@@ -32,11 +32,11 @@ mono_levels <- mono_lake %>%
 ```{r}
 # Data Vis here
 ggplot(mono_levels, aes(x = year, y = level))+
-  geom_line(size = .8, color = "dodgerblue2", alpha = .5)+
+  geom_line(size = .8, color = "dodgerblue2", alpha = .6)+
    geom_ribbon(aes(ymin = -Inf,
                   ymax = level),
               fill = "dodgerblue2",
-              alpha = .3) +
+              alpha = .15) +
   theme_bw()+
   labs(
     x = "Year",
@@ -69,7 +69,7 @@ ggplot(mono_levels, aes(x = year, y = level))+
   annotate("segment", x = 1940, xend = 1940, y = 6417, yend = 6440, colour = "mediumblue", size=.4, alpha = .2)+
   
   annotate(geom = "text", x = 1979, y = 6440, size = 3,
-             label = 'atop(bold("1979"),"Public Trust Lawsuit")', parse = TRUE)+
+             label = 'atop(bold("1979"),"Public Trust lawsuit")', parse = TRUE)+
   annotate(geom = "point", x = 1979, y = 6373.4, size = 1.7, shape = 16, color = "mediumblue")+
     annotate("segment", x = 1979, xend = 1979, y = 6373, yend = 6432, colour = "mediumblue", size=.4, alpha = .2)+
   
