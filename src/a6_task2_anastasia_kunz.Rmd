@@ -49,7 +49,7 @@ response_party <- party_subset %>%
   ))
 ```
 
-**Table 1.** Self identification survey of political party and environmentalist. Data: Forest & Batavia 2017
+**Table 1.** Self identification survey of political party and environmentalist status. Data: Forest & Batavia 2017
 ```{r}
 # Create finalized display table 
 response_count <- response_party %>% 

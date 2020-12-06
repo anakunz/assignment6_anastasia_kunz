@@ -50,7 +50,7 @@ ggplot(lizard_subset, aes( x = spp, y = total_length))+
 
 **Figure 1.** Box plot depicting total tail length comparison of female lizards between the Colorado Checkered Lizard and the Desert Grassland Lizard. Data: Lightfoot 2017
 
-**Table 1.** Summary table of comparing tail length of female Colorado Checkered Liard and female Desert Grassland Lizard. Data: Lightfoot 2017
+**Table 1.** Summary table of comparing tail length of female Colorado Checkered Lizard (CNTE) and female Desert Grassland Lizard (CNUN). Data: Lightfoot 2017
 ```{r}
 # Create Summary Table
 lizard_summary <- lizard_subset %>% 
