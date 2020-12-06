@@ -1,5 +1,5 @@
 ---
-title: "Mono Lake Levels Data Viusalization"
+title: "Historical Levels at Mono Lake"
 author: "Anastasia Kunz"
 date: "12/1/2020"
 output: html_document
@@ -40,7 +40,7 @@ ggplot(mono_levels, aes(x = year, y = level))+
   theme_bw()+
   labs(
     x = "Year",
-    y = "Lake Level (Feet Above Sealevel)",
+    y = "Lake Level (Feet Above Sea Level)",
     title = "Time Series of Mono Lake Levels",
     subtitle = "1850 - 2017"
   )+
@@ -82,7 +82,7 @@ ggplot(mono_levels, aes(x = year, y = level))+
   annotate(geom = "text", x = 1994, y = 6400, size = 3,
              label = 'atop(bold("1994"),"State Water Board Decision")', parse = TRUE)+
   annotate("segment", x = 1994, xend = 1994, y = 6374, yend = 6394, colour = "mediumblue", size=.4, alpha = .2)+
-    scale_x_continuous(limits = c(1850, 2017), 
+    scale_x_continuous(limits = c(1850, 2018), 
                      breaks = c(1850, 1875, 1900, 1925, 1950, 1975, 2000, 2017),
                      expand = c(0, 0))
 
@@ -94,7 +94,7 @@ ggplot(mono_levels, aes(x = year, y = level))+
 
 ```
 
-**Figure 1.** Caption here. Data: 
+**Figure 1.** Lake levels measured in feet above sea level every year on October 1st from 1850 - 2017 designated by the blue line. Colored threshold lines indicate ecologically significant lake levels; 6392 ft is the target management lake level set by the California State Water Resources Control Board's Decision 1631, at 6377 ft a land bridge forms connecting critical bird nesting grounds to the mainland threatening their survival, at 6360 ft high salinity concentrations cause  ecological effects, and similarly at 6350 ft higher salinity concentrations cause acute effects. Data: Mono Basin Clearinghouse 2017.
 
 
 
